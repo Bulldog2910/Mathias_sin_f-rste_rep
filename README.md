@@ -1,2 +1,4 @@
 # Mathias_sin_første_rep
- Test
+ Macbook pro    
+ Ventura 15.3.1
+
