@@ -2,3 +2,5 @@
  Macbook pro    
  Ventura 15.3.1
 Git version 3.3.1
+
+Dette kommer til å ødellegge documetet
