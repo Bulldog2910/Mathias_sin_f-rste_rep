@@ -43,9 +43,15 @@ Island = draw-Scandinavian-flagg("blue", "white", "red")
 Finland = draw-Scandinavian-flagg("white", "white", "dark blue")
 Faroyene = draw-Scandinavian-flagg("white", "blue", "red")
 
-Faroyene
-Finland
-Island
-Danamrk
-Sverige
-Norge
+my-table = table: Land :: String
+  row: "Norge"
+  row: "Sverige"
+  row: "Danmark"
+  row: "Finland"
+  row: "Faroyene"
+  row: "Island"
+end
+
+
+my-table
+"Skriv et av landene:"
