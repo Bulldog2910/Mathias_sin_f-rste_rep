@@ -1,21 +1,27 @@
- include shared-gdrive(
-             "dcic-2021",
-             "1wyQZj_L0qqV9Ekgr9au6RX2iqt2Ga8Ep")
 include gdrive-sheets
+include shared-gdrive("dcic-2021", "1wyQZj_L0qqV9Ekgr9au6RX2iqt2Ga8Ep")
 include data-source
 ssid = "1RYN0i4Zx_UETVuYacgaGfnFcv4l9zd9toQTTdkQkj7g"
 kWh-wealthy-consumer-data =
    load-table: komponent, energi
     source: load-spreadsheet(ssid).sheet-by-name("kWh", true)
     sanitize komponent using string-sanitizer
-    sanitize energi using string-sanitizer   
-   end
-
-       fun energi-to-number(str :: String) -> Number:
-  cases(Option) string-to-number(str):
-    | some(a) => a
-    | none => 0
+    sanitize energi using string-sanitizer       
   end
+
+
+
+
+
+
+
+       fun energi-to-number(s :: String) -> Number:
+  doc: "If str is not a numeric string, default to 0."
+  cases(Option) string-to-number(s):
+    | some(a) => a
+    | none => num-round(0)
+  end
+ 
        where:
          energi-to-number("") is 0
     energi-to-number("48") is 48
@@ -27,20 +33,30 @@ kWh-wealthy-consumer-data =
   energi-to-number("12") is 12
   
        end
-
-transform-column(kWh-wealthy-consumer-data, "energi",energi-to-number)
-
-
-
+"Første Tabell"
+kWh-wealthy-consumer-data
+"Oppdater tabell hvor String er gjort om til Numbers"
+Nytabell = transform-column(kWh-wealthy-consumer-data, "energi",energi-to-number)
+Nytabell
 
 fun forbruk(dtpd, dpuf, epuf) -> Number:
   #energy-per-day = ( distance-travelled-per-day / distance-per-unit-of-fuel ) * energy-per-unit-of-fuel
   energy-car-day = ( dtpd / dpuf ) * epuf
-  energy-per-day = energy-car-day
-  
+  energy-per-day = energy-car-day + sum(Nytabell, "energi")
   energy-per-day
 end
 
+"Total forbruk:"
+forbruk(0, 1, 0)
+
+"En chart som viser forbruket delt opp i faktorene"
+bar-chart(Nytabell, "komponent", "energi")
+
 
 
   
+
+
+
+
+
