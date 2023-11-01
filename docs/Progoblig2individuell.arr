@@ -10,18 +10,13 @@ kWh-wealthy-consumer-data =
   end
 
 
-
-
-
-
-
-       fun energi-to-number(s :: String) -> Number:
+ fun energi-to-number(s :: String) -> Number:
   doc: "If str is not a numeric string, default to 0."
   cases(Option) string-to-number(s):
     | some(a) => a
     | none => num-round(0)
   end
- 
+   
        where:
          energi-to-number("") is 0
     energi-to-number("48") is 48
@@ -32,9 +27,12 @@ kWh-wealthy-consumer-data =
   energi-to-number("15") is 15
   energi-to-number("12") is 12
   
+
        end
+
 "Første Tabell"
 kWh-wealthy-consumer-data
+
 "Oppdater tabell hvor String er gjort om til Numbers"
 Nytabell = transform-column(kWh-wealthy-consumer-data, "energi",energi-to-number)
 Nytabell
@@ -51,12 +49,3 @@ forbruk(0, 1, 0)
 
 "En chart som viser forbruket delt opp i faktorene"
 bar-chart(Nytabell, "komponent", "energi")
-
-
-
-  
-
-
-
-
-
