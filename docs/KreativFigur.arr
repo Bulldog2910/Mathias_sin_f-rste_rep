@@ -19,4 +19,4 @@ underlay-xy(
       "red")),
   30,
   50,
-  radial-star(20, 10, 20, "outline", "black"))
+  rectangle(40, 30, "outline", "black"))
