@@ -1,0 +1,22 @@
+underlay-xy(
+  underlay-xy(
+    underlay-xy(
+      circle(
+        50, 
+        "solid", 
+        "lightgreen"), 
+      30, 
+      30, 
+      circle(
+        5, 
+        "solid", 
+        "red")), 
+    60, 
+    30, 
+    circle(
+      5, 
+      "solid", 
+      "red")),
+  30,
+  50,
+  radial-star(20, 10, 20, "outline", "black"))
